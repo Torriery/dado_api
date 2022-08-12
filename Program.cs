@@ -11,12 +11,11 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapGet("/", () => "vc tem dado em casa ?");
 
 app.MapGet("/dado/d{NumeroDeFaces}",( [FromRoute] int NumeroDeFaces ) => {
     if (NumeroDeFaces <= 0)
     {
-        return Results.BadRequest(new Object{ mensagem = "somente dados com pelo menos uma face"});
+        return Results.BadRequest(new { mensagem = "somente dados com pelo menos uma face"});
     }
 
     int face = RandomNumberGenerator.GetInt32(1,NumeroDeFaces + 1);
